@@ -9,7 +9,7 @@ namespace netCoreWorkshop
 {
     public class Startup
     {
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
             app.UseMvc(routes =>
@@ -18,6 +18,10 @@ namespace netCoreWorkshop
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
