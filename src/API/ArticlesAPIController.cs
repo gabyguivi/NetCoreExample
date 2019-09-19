@@ -9,6 +9,13 @@ namespace netCoreWorkshop.API
     [ApiController]
     public class ArticlesApiController : ControllerBase
     {
+
+        private readonly IArticlesService articlesService;
+        public ArticlesApiController(IArticlesService articlesService)
+        {
+            this.articlesService = articlesService;
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

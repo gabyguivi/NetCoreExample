@@ -7,10 +7,15 @@ namespace netCoreWorkshop.Controllers
 {
     public class ArticlesController : Controller
     {
+        private readonly IArticlesService articlesService;
+        public ArticlesController(IArticlesService articlesService)
+        {
+            this.articlesService = articlesService;
+        }
         [HttpGet]
         public IActionResult Index()
         {
-            return View(Article.DataSource);
+            return View(articlesService.GetAllArticles());
         }
 
         [HttpGet]
@@ -22,20 +27,20 @@ namespace netCoreWorkshop.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Article.DataSource.RemoveAll(a => a.Id == id);
+            articlesService.DeleteArticle(id);
             return View("Index");
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(Article.DataSource.First(a => a.Id == id));
+            return View(articlesService.GetOneArticle(id));
         }
 
         [HttpGet]
         public IActionResult Detail(int id)
         {
-            return View(Article.DataSource.First(a => a.Id == id));
+            return View(articlesService.GetOneArticle(id));
         }
 
         [HttpPost]
@@ -43,8 +48,7 @@ namespace netCoreWorkshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                article.Id = Article.DataSource.Count() + 1;
-                Article.DataSource.Add(article);
+                articlesService.AddArticle(article);
                 return RedirectToAction("Index");
             }
 
@@ -56,7 +60,7 @@ namespace netCoreWorkshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                Article.DataSource.First(a=>a.Id== article.Id).Title = article.Title;
+                articlesService.UpdateArticle(article);
                 return RedirectToAction("Index");
             }
 
