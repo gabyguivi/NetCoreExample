@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using netCoreWorkshop.Business;
 using Microsoft.EntityFrameworkCore;
+using netCoreWorkshop.Middlewares;
+
 
 namespace netCoreWorkshop
 {
@@ -22,6 +24,7 @@ namespace netCoreWorkshop
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var startupLogger = loggerFactory.CreateLogger<Startup>();
+            app.UseAPIKey();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
