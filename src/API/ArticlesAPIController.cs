@@ -19,14 +19,14 @@ namespace netCoreWorkshop.API
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var article = Article.DataSource.Where(a => a.Id == id).FirstOrDefault();
-
+            var article = articlesService.GetOneArticle(id);
+            
             if (article == null)
             {
                 return NotFound();
             }
 
-            return Ok(Article.DataSource.Single(a => a.Id == id));
+            return Ok(article);
         }
 
         [HttpGet]
