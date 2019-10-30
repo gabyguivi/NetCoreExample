@@ -30,7 +30,7 @@ namespace netCoreWorkshop.API
         }
 
         [HttpGet]
-        public IActionResult Get() => Ok(Article.DataSource);
+        public IActionResult Get() => Ok(articlesService.GetAllArticles());
 
         [HttpPost]
         public IActionResult Create([FromBody]Article article)
@@ -40,9 +40,9 @@ namespace netCoreWorkshop.API
                 return BadRequest(ModelState);
             }
 
-            var newArticle = new Article { Title = article.Title, Id = Article.DataSource.Count() };
+            var newArticle = new Article { Title = article.Title };
 
-            Article.DataSource.Add(newArticle);
+            articlesService.AddArticle(newArticle);
 
             return CreatedAtAction(nameof(Create), new { id = newArticle.Id }, newArticle);
         }

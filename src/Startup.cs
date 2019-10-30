@@ -24,7 +24,10 @@ namespace netCoreWorkshop
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var startupLogger = loggerFactory.CreateLogger<Startup>();
-            app.UseAPIKey();
+            app.UseAPIKey(new APIKeyOptions
+            {
+                APIKeyValue = "hgfdsa",
+            });
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
