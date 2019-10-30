@@ -24,10 +24,7 @@ namespace netCoreWorkshop
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var startupLogger = loggerFactory.CreateLogger<Startup>();
-            app.UseAPIKey(new APIKeyOptions
-            {
-                APIKeyValue = "hgfdsa",
-            });
+            app.UseAPIKey();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
@@ -50,6 +47,11 @@ namespace netCoreWorkshop
             {
                 options.UseSqlite(Configuration.GetConnectionString("Articles"));
             });
+
+            // Setup options with DI
+            services.AddOptions();
+
+            services.Configure<APIKeyOptions>(Configuration.GetSection("APIKeyOptions"));
         }
     }
 }

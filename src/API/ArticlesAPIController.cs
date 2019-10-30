@@ -60,7 +60,7 @@ namespace netCoreWorkshop.API
                 return BadRequest(ModelState);
             }
 
-            var currentArticle = Article.DataSource.Where(m => m.Id == id).FirstOrDefault();
+            var currentArticle = articlesService.GetOneArticle(id);
 
             if (currentArticle == null)
             {
@@ -68,20 +68,21 @@ namespace netCoreWorkshop.API
             }
 
             currentArticle.Title = article.Title;
+            articlesService.UpdateArticle(currentArticle);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var currentArticle = Article.DataSource.Where(m => m.Id == id).FirstOrDefault();
+            var currentArticle = articlesService.GetOneArticle(id);
 
             if (currentArticle == null)
             {
                 return NotFound();
             }
 
-            Article.DataSource.Remove(currentArticle);
+            articlesService.DeleteArticle(id);
             return NoContent();
         }
     }

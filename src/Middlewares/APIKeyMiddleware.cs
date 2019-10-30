@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 
 namespace netCoreWorkshop.Middlewares
 {
@@ -9,10 +10,10 @@ namespace netCoreWorkshop.Middlewares
         private readonly RequestDelegate next;
         private readonly APIKeyOptions options;
 
-        public APIKeyMiddleware(RequestDelegate next, APIKeyOptions options)
+        public APIKeyMiddleware(RequestDelegate next, IOptions<APIKeyOptions> options)
         {
             this.next = next;
-            this.options = options;
+            this.options = options.Value;
         }
 
         public async Task Invoke(HttpContext context)
@@ -41,17 +42,11 @@ namespace netCoreWorkshop.Middlewares
             await this.next(context);
         }
     }
-
     public static class APIKeyMiddlewareExtensions
     {
         public static IApplicationBuilder UseAPIKey(this IApplicationBuilder builder)
         {
-            return builder.UseAPIKey(new APIKeyOptions());
+            return builder.UseMiddleware<APIKeyMiddleware>();
         }
-
-        public static IApplicationBuilder UseAPIKey(this IApplicationBuilder builder, APIKeyOptions options)
-        {
-            return builder.UseMiddleware<APIKeyMiddleware>(options);
-        }
-    }
+    } 
 }
