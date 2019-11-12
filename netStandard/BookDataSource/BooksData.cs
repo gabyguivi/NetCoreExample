@@ -11,7 +11,7 @@ namespace BookDataSource
         {
             DataSet dataSet = new DataSet();
 
-            dataSet.ReadXml(@"..\..\..\DataSource\Books.xml");
+            dataSet.ReadXml(@"..\DataSource\Books.xml");
 
             return dataSet;
         }
