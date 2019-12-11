@@ -25,6 +25,7 @@ namespace netCoreWorkshop
         {
             var startupLogger = loggerFactory.CreateLogger<Startup>();
             //app.UseAPIKey();
+            app.UseCors("CorsPolicy");
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
@@ -41,6 +42,16 @@ namespace netCoreWorkshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                    );
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IArticlesService, ArticlesService>();
             services.AddDbContext<Data.ArticlesContext>(options =>
