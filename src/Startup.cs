@@ -24,7 +24,7 @@ namespace netCoreWorkshop
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var startupLogger = loggerFactory.CreateLogger<Startup>();
-            app.UseAPIKey();
+            //app.UseAPIKey();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
