@@ -61,7 +61,6 @@ namespace netCoreWorkshop
 
             // Setup options with DI
             services.AddOptions();
-
             services.Configure<APIKeyOptions>(Configuration.GetSection("APIKeyOptions"));
         }
     }
