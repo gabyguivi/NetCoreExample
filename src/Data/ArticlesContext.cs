@@ -14,7 +14,7 @@ namespace netCoreWorkshop.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=./articles.db");
+            //optionsBuilder.UseSqlite("Filename=./articles.db");
         }
     }
 }

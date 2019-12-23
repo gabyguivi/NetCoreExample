@@ -28,7 +28,7 @@ namespace netCoreWorkshop.Controllers
         public IActionResult Delete(int id)
         {
             articlesService.DeleteArticle(id);
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

@@ -49,7 +49,10 @@ namespace netCoreWorkshop.Business
         {
             Article article = GetOneArticle(id);
             if (article != null)
+            {
                 _context.Articles.Remove(article);
+                _context.SaveChanges();
+            }
         }
     }
 }
