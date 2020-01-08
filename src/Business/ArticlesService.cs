@@ -26,7 +26,7 @@ namespace netCoreWorkshop.Business
         public Article AddArticle(Article article)
         {
             _logger.LogDebug("Starting save");
-            var newArticle = new Article { Title = article.Title };
+            var newArticle = new Article { Title = article.Title, Price=article.Price };
             _context.Articles.Add(newArticle);
             _context.SaveChanges();
             _logger.LogDebug("Finished save");
@@ -38,7 +38,10 @@ namespace netCoreWorkshop.Business
 
             Article currentArticle = GetOneArticle(article.Id);
             if (currentArticle != null)
+            {
                 currentArticle.Title = article.Title;
+                currentArticle.Price = article.Price;
+            }
             else
                 return null;
             _context.SaveChanges();

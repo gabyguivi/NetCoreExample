@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
 	<PreserveCompilationContext>true</PreserveCompilationContext>
 	<MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+	<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
