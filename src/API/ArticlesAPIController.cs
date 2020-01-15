@@ -40,7 +40,7 @@ namespace netCoreWorkshop.API
                 return BadRequest(ModelState);
             }
 
-            var newArticle = new Article { Title = article.Title };
+            var newArticle = new Article { Title = article.Title, Price= article.Price };
 
             articlesService.AddArticle(newArticle);
 
@@ -68,6 +68,7 @@ namespace netCoreWorkshop.API
             }
 
             currentArticle.Title = article.Title;
+            currentArticle.Price = article.Price;
             articlesService.UpdateArticle(currentArticle);
             return NoContent();
         }
