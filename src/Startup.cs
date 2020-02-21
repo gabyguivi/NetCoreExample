@@ -53,7 +53,8 @@ namespace netCoreWorkshop
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IArticlesService, ArticlesService>();
-            services.AddDbContext<Data.ArticlesContext>(options =>
+            services.AddTransient<ICarService, CarService>();
+            services.AddDbContext<Data.DBContext>(options =>
             {
                 options.UseSqlite(Configuration.GetConnectionString("Articles"));
             });

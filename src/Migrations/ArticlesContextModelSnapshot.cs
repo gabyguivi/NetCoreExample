@@ -6,7 +6,7 @@ using netCoreWorkshop.Data;
 
 namespace netCoreWorkshop.Migrations
 {
-    [DbContext(typeof(ArticlesContext))]
+    [DbContext(typeof(DBContext))]
     partial class ArticlesContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -28,6 +28,23 @@ namespace netCoreWorkshop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("netCoreWorkshop.Entities.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("Model")
+                        .IsRequired();
+
+                    b.Property<double>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
                 });
 #pragma warning restore 612, 618
         }

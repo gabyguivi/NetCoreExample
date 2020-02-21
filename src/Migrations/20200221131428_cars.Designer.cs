@@ -8,8 +8,8 @@ using netCoreWorkshop.Data;
 namespace netCoreWorkshop.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20200107164419_price")]
-    partial class price
+    [Migration("20200221131428_cars")]
+    partial class cars
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,6 +30,23 @@ namespace netCoreWorkshop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("netCoreWorkshop.Entities.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Brand");
+
+                    b.Property<string>("Model")
+                        .IsRequired();
+
+                    b.Property<double>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
                 });
 #pragma warning restore 612, 618
         }

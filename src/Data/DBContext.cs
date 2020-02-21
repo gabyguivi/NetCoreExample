@@ -3,14 +3,15 @@ using netCoreWorkshop.Entities;
 
 namespace netCoreWorkshop.Data
 {
-    public class ArticlesContext : DbContext
+    public class DBContext : DbContext
     {
-        public ArticlesContext(DbContextOptions options) :
+        public DBContext(DbContextOptions options) :
             base(options)
         {
         }
 
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

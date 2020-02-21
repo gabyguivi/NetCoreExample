@@ -7,7 +7,7 @@ using netCoreWorkshop.Data;
 
 namespace netCoreWorkshop.Migrations
 {
-    [DbContext(typeof(ArticlesContext))]
+    [DbContext(typeof(DBContext))]
     [Migration("20190925143527_Initial")]
     partial class Initial
     {

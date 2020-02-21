@@ -9,10 +9,10 @@ namespace netCoreWorkshop.Business
 {
     public class ArticlesService : IArticlesService
     {
-        private readonly ArticlesContext _context;
+        private readonly DBContext _context;
         private readonly ILogger<ArticlesService> _logger;
 
-        public ArticlesService(ArticlesContext context, ILogger<ArticlesService> logger)
+        public ArticlesService(DBContext context, ILogger<ArticlesService> logger)
         {
             _context = context;
             _logger = logger;
